@@ -2,8 +2,8 @@ import os
 import time
 from dotenv import load_dotenv
 from google import genai
-
-load_dotenv("../.env.local")
+env_path = os.path.join(os.path.dirname(__file__), "..", ".env.local")
+load_dotenv(env_path)
 
 api_key = os.getenv("GEMINI_API_KEY")
 if not api_key:
