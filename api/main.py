@@ -11,7 +11,7 @@ app = FastAPI(title="Agent Firewall API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["https://agent-firewall-umber.vercel.app/"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
