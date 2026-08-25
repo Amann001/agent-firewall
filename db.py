@@ -9,13 +9,14 @@ supabase = create_client(os.getenv("SUPABASE_URL"), os.getenv("SUPABASE_KEY"))
 
 
 def log_event(input_text: str, result: dict) -> str:
-    """
-    Logs any processed input's outcome to the events table.
-    Works for all three outcome types: blocked, executed, paused_for_approval.
-    """
+    outcome = result.get("type", "unknown")
+
+    if result.get("manager_status") == "paused_for_approval":
+        outcome = "paused_for_approval"
+
     event_data = {
         "input_text": input_text,
-        "outcome": result.get("type", "unknown"),
+        "outcome": outcome,
         "caught_by": result.get("caught_by"),
         "tool_name": result.get("tool_name"),
         "arguments": result.get("arguments"),
@@ -34,7 +35,4 @@ def get_recent_events(limit: int = 20):
 
 
 def update_approval(event_id: str, decision: str):
-    """
-    decision should be 'approved' or 'rejected'
-    """
     supabase.table("events").update({"approval_status": decision}).eq("id", event_id).execute()
