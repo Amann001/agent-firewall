@@ -11,8 +11,6 @@
 
 **A security layer for autonomous AI agents.** Warden sits between an agent and the world, catching disguised prompt injection attempts before they're acted on, and independently risk-scoring every action an agent tries to take — pausing anything dangerous for human approval, regardless of how it was worded.
 
-🔗 **[Live Demo](https://your-vercel-url.vercel.app)** — try it yourself: type a message, watch it get blocked, executed, or paused, in real time.
-
 ## Table of Contents
 - [Why This Exists](#why-this-exists)
 - [The Exploit](#the-exploit)
